@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mustache from 'mustache-express'
 import path from 'path'
-import mainRoutes from './routes'
+import mainRoutes from './routes/index'
 
 // Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
@@ -19,7 +19,7 @@ server.use(express.static(path.join(__dirname, '../public')));
 server.use(mainRoutes);
 // Middleware para tratar páginas não encontradas
 server.use((req, res)=> {
-  res.status(404).send('página não encontrada')
+  res.render('pages/404')
 })
 // Inicia o servidor na porta definida na variável de ambiente
 const PORT = process.env.PORTA || 3000 // Usa a porta definida ou a 3000 por padrão
